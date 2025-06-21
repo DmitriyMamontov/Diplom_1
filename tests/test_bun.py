@@ -1,13 +1,14 @@
 import pytest
 from bun import Bun
 from data import *
+class TestBun:
 
-@pytest.mark.parametrize("name, price", [
-    (BUN_NAME, BUN_PRICE),
-    (BUN_NAME2, BUN_PRICE2),
-    (BUN_NAME3, BUN_PRICE3),
-])
-def test_bun_initialization(name, price):
-    bun = Bun(name, price)
-    assert bun.get_name() == name
-    assert bun.get_price() == price
+    @pytest.mark.parametrize("expected_name, expected_price", bun_data)
+    def test_bun_get_name(self, expected_name, expected_price):
+        bun = Bun(expected_name, expected_price)
+        assert bun.get_name() == expected_name
+
+    @pytest.mark.parametrize("expected_name, expected_price", bun_data)
+    def test_bun_get_price(self, expected_name, expected_price):
+        bun = Bun(expected_name, expected_price)
+        assert bun.get_price() == expected_price
